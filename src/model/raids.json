@@ -106,5 +106,14 @@
         "difficulty_hm_16": 7,
         "difficulty_nim_8": null,
         "difficulty_nim_16": null
+    },
+    {
+        "name": "raid_ilum",
+        "difficulty_sm_8": 2,
+        "difficulty_sm_16": null,
+        "difficulty_hm_8": 5,
+        "difficulty_hm_16": null,
+        "difficulty_nim_8": 10,
+        "difficulty_nim_16": null
     }
 ]
