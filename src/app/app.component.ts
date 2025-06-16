@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, Inject, OnInit, inject, DOCUMENT } from '@angular/core';
 import { MatDialog as MatDialog } from '@angular/material/dialog';
 import { TruemmerdialogComponent } from './truemmerdialog/truemmerdialog.component';
-import { DOCUMENT } from '@angular/common';
+
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { Raid, SelectedRaid } from 'src/model/raid';
 
