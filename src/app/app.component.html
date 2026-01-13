@@ -7,14 +7,18 @@
 </mat-toolbar>
 
 <mat-menu #menu="matMenu" xPosition="before">
-  <button mat-menu-item *ngIf="darkTheme" (click)="setDarkTheme(true)">
-    <mat-icon>light_mode</mat-icon>
-    <span translate>light_theme</span>
-  </button>
-  <button mat-menu-item *ngIf="!darkTheme" (click)="setDarkTheme(false)">
-    <mat-icon>dark_mode</mat-icon>
-    <span translate>dark_theme</span>
-  </button>
+  @if (darkTheme) {
+    <button mat-menu-item (click)="setDarkTheme(true)">
+      <mat-icon>light_mode</mat-icon>
+      <span translate>light_theme</span>
+    </button>
+  }
+  @if (!darkTheme) {
+    <button mat-menu-item (click)="setDarkTheme(false)">
+      <mat-icon>dark_mode</mat-icon>
+      <span translate>dark_theme</span>
+    </button>
+  }
   <button mat-menu-item [matMenuTriggerFor]="languageMenu">
     <mat-icon class="material-symbols-outlined">language</mat-icon>
     <span translate="language"></span>
@@ -23,13 +27,21 @@
 
 <mat-menu #languageMenu="matMenu" xPosition="before">
   <button mat-menu-item (click)="setLanguage('de')">
-    <mat-icon *ngIf="isLanguage('de')">radio_button_checked</mat-icon>
-    <mat-icon *ngIf="!isLanguage('de')">radio_button_unchecked</mat-icon>
+    @if (isLanguage('de')) {
+      <mat-icon>radio_button_checked</mat-icon>
+    }
+    @if (!isLanguage('de')) {
+      <mat-icon>radio_button_unchecked</mat-icon>
+    }
     <span>Deutsch</span>
   </button>
   <button mat-menu-item (click)="setLanguage('en')">
-    <mat-icon *ngIf="isLanguage('en')">radio_button_checked</mat-icon>
-    <mat-icon *ngIf="!isLanguage('en')">radio_button_unchecked</mat-icon>
+    @if (isLanguage('en')) {
+      <mat-icon>radio_button_checked</mat-icon>
+    }
+    @if (!isLanguage('en')) {
+      <mat-icon>radio_button_unchecked</mat-icon>
+    }
     <span>English</span>
   </button>
 </mat-menu>
@@ -55,14 +67,18 @@
         <mat-card-content>
 
           <div class="input-container">
-            <mat-form-field *ngIf="translationsLoaded">
-              <mat-label for="raid" translate>raid</mat-label>
-              <mat-select [(ngModel)]="raid.raid" name="raid" (selectionChange)="selectedRaidChanged(raid)">
-                <mat-option *ngFor="let raid of raids" [value]="raid">
-                  {{raid.name | translate }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+            @if (translationsLoaded) {
+              <mat-form-field>
+                <mat-label for="raid" translate>raid</mat-label>
+                <mat-select [(ngModel)]="raid.raid" name="raid" (selectionChange)="selectedRaidChanged(raid)">
+                  @for (raid of raids; track raid) {
+                    <mat-option [value]="raid">
+                      {{raid.name | translate }}
+                    </mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            }
           </div>
 
           <div class="input-container horizontal">
@@ -110,7 +126,7 @@
 
           <mat-card-actions>
             <button mat-flat-button color="primary" class="btn" (click)="showTruemmerDialog()"
-              translate="submit"></button>
+            translate="submit"></button>
           </mat-card-actions>
 
         </mat-card-content>
