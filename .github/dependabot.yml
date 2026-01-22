@@ -1,17 +1,23 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
-
 version: 2
 updates:
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
       interval: "weekly"
+    # This ensures Dependabot doesn't try to install peer deps 
+    # that might conflict during the grouping process
+    rebase-strategy: "auto" 
+    
     groups:
       angular:
         patterns:
           - "@angular*"
           - "zone.js"
           - "rxjs"
+          - "tslib" # Often bundled with Angular updates
+
+    # Increase the open PR limit if you have many dependencies
+    open-pull-requests-limit: 10
+
+    # Ensure metadata is handled correctly for modern npm
+    versioning-strategy: increase
