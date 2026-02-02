@@ -67,10 +67,12 @@
         <mat-card-content>
 
           <div class="input-container">
-            @if (translationsLoaded) {
               <mat-form-field>
                 <mat-label for="raid" translate>raid</mat-label>
                 <mat-select [(ngModel)]="raid.raid" name="raid" (selectionChange)="selectedRaidChanged(raid)">
+                  <mat-select-trigger>
+                    {{raid.raid.name | translate}}
+                  </mat-select-trigger>
                   @for (raid of raids; track raid) {
                     <mat-option [value]="raid">
                       {{raid.name | translate }}
@@ -78,7 +80,6 @@
                   }
                 </mat-select>
               </mat-form-field>
-            }
           </div>
 
           <div class="input-container horizontal">

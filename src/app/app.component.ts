@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, inject, DOCUMENT } from '@angular/core';
+import { Component, Inject, OnInit, inject, DOCUMENT, ChangeDetectorRef } from '@angular/core';
 import { MatDialog as MatDialog } from '@angular/material/dialog';
 import { TruemmerdialogComponent } from './truemmerdialog/truemmerdialog.component';
 
@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
 
   darkTheme = true;
   translateService = inject(TranslateService);
-  translationsLoaded = false;
 
   raids: Raid[] = data;
 
@@ -51,8 +50,6 @@ export class AppComponent implements OnInit {
       this.translateService.use('de');
     }
     this.translateService.onDefaultLangChange.subscribe(() => {
-      // workaround for ngx-translate bug with mat-select
-      this.translationsLoaded = true;
       this.setTitle();
     });
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
