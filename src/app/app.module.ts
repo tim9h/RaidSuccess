@@ -1,29 +1,25 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSliderModule as MatSliderModule } from '@angular/material/slider';
-import { MatButtonModule as MatButtonModule } from '@angular/material/button';
-import { MatFormField, MatSelectModule as MatSelectModule } from '@angular/material/select';
-import { MatDialogModule as MatDialogModule } from '@angular/material/dialog';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { FormsModule } from '@angular/forms';
-import { DialogComponent } from './resultdialog/dialog.component';
-import { OverlayModule } from '@angular/cdk/overlay';
 import { A11yModule } from '@angular/cdk/a11y';
-import { MatCardModule } from '@angular/material/card'
+import { OverlayModule } from '@angular/cdk/overlay';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule} from '@angular/material/menu';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClient, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideTranslateService, TranslateModule } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AppComponent } from './app.component';
+import { DialogComponent } from './resultdialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -48,12 +44,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatMenuModule,
     MatButtonToggleModule,
     TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-      defaultLanguage: 'de'
+      loader: provideTranslateHttpLoader({ prefix: "./assets/i18n/", suffix: ".json" }),
+      fallbackLang: 'de'
     })
   ],
   providers: [provideHttpClient(withInterceptorsFromDi())],
