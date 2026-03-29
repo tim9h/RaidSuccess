@@ -1,12 +1,12 @@
 import { Component, Inject, OnInit, inject, DOCUMENT, ChangeDetectorRef } from '@angular/core';
 import { MatDialog as MatDialog } from '@angular/material/dialog';
-import { TruemmerdialogComponent } from './truemmerdialog/truemmerdialog.component';
+import { DialogComponent } from './resultdialog/dialog.component';
 
 import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 import { Raid, SelectedRaid } from 'src/model/raid';
 
 export interface DialogData {
-  truemmerfaktor: number;
+  successfactor: number;
 }
 
 import data from '../model/raids.json';
@@ -83,9 +83,9 @@ export class AppComponent implements OnInit {
     }
   }
 
-  showTruemmerDialog(): void {
-    const dialogRef = this.dialog.open(TruemmerdialogComponent, {
-      data: { truemmerfaktor: this.calculateTruemmer() },
+  showResultDialog(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      data: { successfactor: this.calculateSuccessFactor() },
     });
   }
 
@@ -112,7 +112,7 @@ export class AppComponent implements OnInit {
     return -1;
   }
 
-  calculateTruemmer() {
+  calculateSuccessFactor() {
     return (((this.getComplexity() + this.trolling) / (this.skill + this.experience)) * (11 - this.motivation)).toFixed(1);
   }
 

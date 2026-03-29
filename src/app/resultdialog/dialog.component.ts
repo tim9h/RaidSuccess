@@ -1,20 +1,20 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialog as MatDialog, MatDialogRef as MatDialogRef, MAT_DIALOG_DATA as MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DialogData } from '../app.component';
 
 @Component({
-  selector: 'app-truemmerdialog',
-  templateUrl: './truemmerdialog.component.html',
-  styleUrls: ['./truemmerdialog.component.scss'],
+  selector: 'app-resultdialog',
+  templateUrl: './dialog.component.html',
+  styleUrls: ['./dialog.component.scss'],
   standalone: false
 })
-export class TruemmerdialogComponent {
+export class DialogComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<TruemmerdialogComponent>,
+    public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
   ) {
-    playZwirnie(Math.round(data.truemmerfaktor));
+    playZwirnie(Math.round(data.successfactor));
   }
 
   closeDialog(): void {
@@ -23,24 +23,24 @@ export class TruemmerdialogComponent {
 
 }
 
-function playZwirnie(truemmerfaktor: number) {
+function playZwirnie(successfactor: number) {
   let audio = new Audio();
 
-  if (truemmerfaktor > 20) {
+  if (successfactor > 20) {
     audio.src = "assets/audio/lachen.mp3";
-  } else if (truemmerfaktor > 15) {
+  } else if (successfactor > 15) {
     audio.src = "assets/audio/sinnlos.mp3";
-  } else if (truemmerfaktor > 10) {
+  } else if (successfactor > 10) {
     audio.src = "assets/audio/uff.mp3";
-  } else if (truemmerfaktor > 7) {
+  } else if (successfactor > 7) {
     audio.src = "assets/audio/aehmja.mp3";
-  } else if (truemmerfaktor > 5) {
+  } else if (successfactor > 5) {
     audio.src = "assets/audio/stoehnen.mp3";
-  } else if (truemmerfaktor > 3) {
+  } else if (successfactor > 3) {
     audio.src = "assets/audio/nichtschlecht.mp3";
-  } else if (truemmerfaktor > 2) {
+  } else if (successfactor > 2) {
     audio.src = "assets/audio/wunderbar.mp3";
-  } else if (truemmerfaktor > 1) {
+  } else if (successfactor > 1) {
     audio.src = "assets/audio/traeumchen.mp3";
   } else {
     audio.src = "assets/audio/richtiggeil.mp3";

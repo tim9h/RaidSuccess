@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "truemmer": {
+    "raidsuccess": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -21,7 +21,7 @@
           "builder": "@angular/build:application",
           "options": {
             "outputPath": {
-              "base": "dist/truemmer"
+              "base": "dist/raidsuccess"
             },
             "index": "src/index.html",
             "polyfills": [
@@ -74,10 +74,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "truemmer:build:production"
+              "buildTarget": "raidsuccess:build:production"
             },
             "development": {
-              "buildTarget": "truemmer:build:development"
+              "buildTarget": "raidsuccess:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -85,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n",
           "options": {
-            "buildTarget": "truemmer:build"
+            "buildTarget": "raidsuccess:build"
           }
         }
       }
